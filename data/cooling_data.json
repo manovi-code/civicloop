@@ -1,0 +1,146 @@
+{
+  "checked": "Oct 2026",
+  "benchmarks": {
+    "evap_wue_l_kwh": 1.80,
+    "hybrid_wue_l_kwh": 0.40,
+    "closed_wue_l_kwh": 0.03,
+    "household_gal_per_year": 109500,
+    "sources": [
+      {"label":"LBNL 2024 U.S. Data Center Energy Usage Report (WUE by cooling type)","url":"https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf"},
+      {"label":"Fluids (2026) review of WUE across 83 data centres: evaporative up to 2.5 L/kWh, dry closed-loop ≈ 0","url":"https://doi.org/10.3390/fluids11080201"},
+      {"label":"Preprint (modeled): evaporative 1.60–1.85, conventional DTC 0.28–0.42, elevated-temp closed loop 0.02–0.05 L/kWh","url":"https://portal.thedockpoint.com/api/docs/jananexuscs/files_for_reviewer/JNCS-077/6ac72ea8f301c_JNCS-077-sampleFile.pdf"},
+      {"label":"Microsoft: zero-water-for-cooling closed-loop design (Dec 2024)","url":"https://www.microsoft.com/en-us/microsoft-cloud/blog/2024/12/09/sustainable-by-design-next-generation-datacenters-consume-zero-water-for-cooling/"},
+      {"label":"EPA WaterSense: average American family uses 300+ gal/day at home","url":"https://www.epa.gov/watersense/how-we-use-water"}
+    ]
+  },
+  "illustrative": {
+    "loopKw": 40,
+    "turnkeyLabel": "nVent Hoffman RackChiller CDU40 (40 kW), distributor sale price",
+    "turnkeyPerLoop": 35212.11,
+    "openItems": [
+      {"item":"2 × Grundfos CRE 5-4 VFD pump (N+1)","cost":5998.00},
+      {"item":"1 × DOWFROST HD 30% 55-gal drum","cost":2000.00},
+      {"item":"1 × Walchem W900-CT monitoring panel","cost":5878.00},
+      {"item":"1 × DuPont FilmTec BW30-400 RO element","cost":993.85}
+    ],
+    "excluded": "plate heat exchanger (no public price found), piping, valves, strainers, controls/PLC, enclosure, fabrication, engineering, commissioning, labor, and heat-rejection equipment"
+  },
+  "parts": [
+    {
+      "category": "Coolant Distribution Unit (CDU)",
+      "openSpec": "Open-spec skid built from the components below (no assembled price published)",
+      "openPrice": "No published price — see component rows",
+      "turnkeyVendor": "nVent Hoffman RackChiller CDU40 (40 kW) · Motivair MCDU-15 · Vertiv CoolPhase CDU",
+      "turnkeyPrice": "$35,212.11 unfilled / $36,469.99 filled (nVent, RSP Supply) · $46,798.20 (Motivair, Uniqcli) · Vertiv: quote only",
+      "links": [
+        {"label":"nVent CDU40 unfilled (RSP Supply)","url":"https://rspsupply.com/p-646492-nvent-hoffman-cdu0402r001-coolant-distribution-unit.aspx"},
+        {"label":"nVent CDU40 filled (RSP Supply)","url":"https://rspsupply.com/p-646493-nvent-hoffman-cdu0402r001q-coolant-distribution-unit.aspx"},
+        {"label":"Motivair MCDU-15 (Uniqcli)","url":"https://getuniqcli.com/catalog/motivair-corporation/mcdu-15-6-60-tf"},
+        {"label":"Vertiv CoolPhase CDU (Server Rack Online, contact for pricing)","url":"https://www.server-rack-online.com/coolphase-cdu/"}
+      ]
+    },
+    {
+      "category": "Variable-Speed Centrifugal Pump",
+      "openSpec": "Grundfos CRE 5-4 vertical multistage pump with integrated variable-speed drive",
+      "openPrice": "$2,999.00 each (MRO Exchange)",
+      "turnkeyVendor": "Integrated inside turnkey CDUs",
+      "turnkeyPrice": "Not sold separately / no public price",
+      "links": [
+        {"label":"Grundfos CRE 5-4 (MRO Exchange)","url":"https://mroexchange.com/products/grundfos-99389085-cre-5-4-n-fgj-a-e-hqqe-vertical-multistage-centrifugal-pump-with-integrated-variable-speed-drive-m00267"}
+      ]
+    },
+    {
+      "category": "RO Makeup / Side-Stream Membrane",
+      "openSpec": "DuPont FilmTec BW30-400 (8\"×40\", 10,500 GPD brackish-water RO element)",
+      "openPrice": "$775.00 – $993.85 per element (FilterWater, FiltersFast)",
+      "turnkeyVendor": "Gradiant HyperSolved (integrated cooling-water treatment)",
+      "turnkeyPrice": "Quote only / managed contract",
+      "links": [
+        {"label":"FilmTec BW30-400 (FilterWater)","url":"https://www.filterwater.com/p-741-dow-filmtec-bw30-400-ro-membrane-10500-gpd.aspx"},
+        {"label":"FilmTec BW30-400 (FiltersFast)","url":"https://www.filtersfast.com/p-Dow-Filmtec-BW30-400-RO-Membrane-10,500-GPD.asp"},
+        {"label":"Gradiant HyperSolved brief","url":"https://pages.gradiant.com/hubfs/Gradiant%20HyperSolved%20Technology%20Brief.pdf"}
+      ]
+    },
+    {
+      "category": "Inhibited Propylene Glycol Coolant",
+      "openSpec": "DOWFROST HD 30% blend inhibited propylene glycol, 55-gal drum",
+      "openPrice": "$2,000.00 per drum (Thermal Fluids Hub)",
+      "turnkeyVendor": "ChemTreat CTSolutions D2C (treatment program incl. PG25/PG50 fluids, biocides, monitoring)",
+      "turnkeyPrice": "Quote only / managed program",
+      "links": [
+        {"label":"DOWFROST HD 30% drum (Thermal Fluids Hub)","url":"https://www.thermalfluidshub.com/product/dowfrost-hd-30-blend-55-gal-drum/"},
+        {"label":"ChemTreat CTSolutions D2C","url":"https://www.chemtreat.com/solutions/featured-innovations/ctsolutions-d2c/"}
+      ]
+    },
+    {
+      "category": "Inline pH / Conductivity / Fluorometer Panel",
+      "openSpec": "Walchem W900-CT panel: 316SS conductivity, flat pH, Cl2, Pyxis polymer sensor, flow-switch manifold",
+      "openPrice": "$5,878.00 MSRP (Cannon Water)",
+      "turnkeyVendor": "ChemTreat CTVista+ monitoring · LiquiTech data center treatment platform",
+      "turnkeyPrice": "Quote only / managed contract",
+      "links": [
+        {"label":"Walchem W900-CT (Cannon Water)","url":"https://cannonwater.com/w900-ct-lbfktn-walchem-316ss-contacting-conductivity-flat-ph-no-atc-extended-ph-cl2-20-ppm-pyxis-polymer-flow-switch-manifold-20-ft-cable/"},
+        {"label":"LiquiTech data centers","url":"https://liquitech.com/industries/data-centers/"}
+      ]
+    }
+  ],
+  "towns": [
+    {"town":"Council Bluffs","state":"IA","operator":"Google","annualMGal":1346.0,
+     "reportedDraw":"1,346.0M gal consumed in 2025 (1,746.4M gal withdrawn); 1,010.2M gal consumed in 2024",
+     "status":"Disclosed (company report)","notes":"Highest-consumption site in Google's 2026 report.",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"},{"label":"AIWaterUse.org (Iowa)","url":"https://aiwateruse.org/ai-data-centers/iowa"}]},
+    {"town":"Loudoun County","state":"VA","operator":"Multiple (incl. Google)","annualMGal":1623.0,
+     "reportedDraw":"~1,623M gal used for data center cooling in 2023 (899M potable + 815M reclaimed); Google's Ashburn, Leesburg & Sterling sites consumed 443.7M gal combined in 2025",
+     "status":"Partial (utility aggregate)","notes":"County says data centers are ~9% of average daily potable use; reclaimed system delivered 750M+ gal in 2025.",
+     "links":[{"label":"Hanover County data center report (citing Loudoun Water)","url":"https://www.hanoverdatacenters.com/_files/ugd/85b47e_01bce7b0328b4f1caf22dc8074dad553.pdf"},{"label":"Loudoun County: Water Considerations","url":"https://www.loudoun.gov/6402/Water-Considerations"},{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"}]},
+    {"town":"Mayes County","state":"OK","operator":"Google","annualMGal":1081.4,
+     "reportedDraw":"1,081.4M gal consumed in 2025 (1,396.7M gal withdrawn)","status":"Disclosed (company report)","notes":"",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"}]},
+    {"town":"Berkeley County","state":"SC","operator":"Google","annualMGal":901.7,
+     "reportedDraw":"901.7M gal consumed in 2025 (988.5M gal withdrawn)","status":"Disclosed (company report)","notes":"",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"}]},
+    {"town":"New Albany","state":"OH","operator":"Google","annualMGal":835.7,
+     "reportedDraw":"835.7M gal consumed in 2025 (1,008.1M gal withdrawn)","status":"Disclosed (company report)","notes":"",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"}]},
+    {"town":"Botetourt County","state":"VA","operator":"Google","annualMGal":730.0,
+     "reportedDraw":"Records show 2M gal/day initially, rising to 8M gal/day with expansion (730M gal/yr = 2M/day × 365, a planned figure, not metered use)",
+     "status":"FOIA contested → court-ordered release","notes":"A judge ruled the projected water use was not proprietary under Virginia FOIA; the water authority then released the records.",
+     "links":[{"label":"29News (Feb 2026)","url":"https://www.29news.com/2026/02/25/google-data-centers-expected-water-use-made-public/"},{"label":"Roanoke Rambler","url":"https://www.roanokerambler.com/water-authority-releases-google-data-center-records-ahead-scheduled-contempt-hearing/"},{"label":"Virginia Coalition for Open Government","url":"https://opengovva.org/foi-opinions/gendreau-v-mcevoy-circuit/"}]},
+    {"town":"The Dalles","state":"OR","operator":"Google","annualMGal":469.0,
+     "reportedDraw":"469.0M gal consumed in 2025 (654.3M gal withdrawn); city figures put 2024 use at ~434M gal, about a third of city water",
+     "status":"FOIA contested → disclosed","notes":"The city sued The Oregonian to keep Google's water records secret, with Google paying legal costs; the case was dropped in late 2022.",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"},{"label":"AIWaterUse.org (Google)","url":"https://aiwateruse.org/companies/google"},{"label":"TapWaterData","url":"https://www.tapwaterdata.com/blog/guides/data-center-water-usage"}]},
+    {"town":"Douglas County","state":"GA","operator":"Google","annualMGal":367.1,
+     "reportedDraw":"367.1M gal consumed in 2025 (440.6M gal withdrawn)","status":"Disclosed (company report)","notes":"",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"}]},
+    {"town":"Altoona","state":"IA","operator":"Meta","annualMGal":365.0,
+     "reportedDraw":"Up to 1M gal/day per the city utility director (365M gal/yr = maximum × 365, not metered annual use); about one-fifth of what the city can produce",
+     "status":"Disclosed (city official)","notes":"City is looking at a new deep well to add 2M gal/day of capacity.",
+     "links":[{"label":"KDSM 17 Des Moines","url":"https://kdsm17.com/news/local/how-much-water-do-iowa-data-centers-use"}]},
+    {"town":"Newton County","state":"GA","operator":"Meta","annualMGal":182.5,
+     "reportedDraw":"~500,000 gal/day, ~10% of county water consumption (182.5M gal/yr = 500k × 365)",
+     "status":"Disclosed (reported)","notes":"Some new permit requests in the county would use up to 6M gal/day.",
+     "links":[{"label":"Lincoln Institute of Land Policy","url":"https://www.lincolninst.edu/es/publications/land-lines-magazine/articles/land-water-impacts-data-centers/"}]},
+    {"town":"Bluffdale","state":"UT","operator":"NSA","annualMGal":126.0,
+     "reportedDraw":"NSA data center: 126M+ gal (Oct 2024–Sep 2025). Nearby DataBank Granite Point campus: 7.7M gal over 12 months",
+     "status":"Disclosed (public records request)","notes":"Records obtained by The Salt Lake Tribune from municipal water providers.",
+     "links":[{"label":"Great Salt Lake Collaborative / Salt Lake Tribune","url":"https://greatsaltlakenews.org/latest-news/salt-lake-tribune/can-utah-become-a-data-center-hub-without-draining-its-water-supply"}]},
+    {"town":"West Des Moines","state":"IA","operator":"Microsoft","annualMGal":68.5,
+     "reportedDraw":"68.5M gal in 2024 across 5 campuses (2.62% of city system total; city's highest water user)",
+     "status":"Disclosed (water utility)","notes":"Per West Des Moines Water Works GM, reported by WPR.",
+     "links":[{"label":"AIWaterUse.org (Iowa, citing WPR)","url":"https://aiwateruse.org/ai-data-centers/iowa"}]},
+    {"town":"Mesa","state":"AZ","operator":"Google","annualMGal":9.7,
+     "reportedDraw":"9.7M gal consumed in 2025 (19.4M gal withdrawn)","status":"Disclosed (company report)","notes":"Described as air-cooled design.",
+     "links":[{"label":"Google 2026 Environmental Report","url":"https://sustainability.google/files/google-2026-environmental-report.pdf"},{"label":"AIWaterUse.org (Google)","url":"https://aiwateruse.org/companies/google"}]}
+  ],
+  "skidSpec": {
+    "title": "Reference Skid v1.0 (draft, seeking independent P.E. review)",
+    "summary": "A draft, open-source bill of materials for a modular closed-loop direct-to-chip cooling block, written from an IT/infrastructure operations perspective. It has not been reviewed or stamped by any engineer. It is published so independent water and mechanical engineers can critique it before anyone relies on it.",
+    "layers": [
+      {"layer":"1. Thermal loop (draft)","spec":"Redundant variable-speed pumps (e.g. Grundfos CRE), a liquid-to-liquid plate heat exchanger, a strainer, and dry-cooler heat rejection instead of an evaporative tower."},
+      {"layer":"2. Makeup water treatment (draft)","spec":"UF pre-filtration and an RO element (e.g. DuPont FilmTec BW30-400) for fill and makeup water. Target water-quality limits to be set by a reviewing engineer."},
+      {"layer":"3. Coolant & monitoring (draft)","spec":"Inhibited propylene glycol (e.g. DOWFROST HD) or inhibited water, with inline pH/conductivity monitoring (e.g. Walchem W900) exporting over open protocols such as Modbus."},
+      {"layer":"4. Permit packet (planned)","spec":"A checklist a town or zoning board could ask applicants to complete, covering expected WUE, discharge, and annual water use. Not yet written or reviewed."}
+    ]
+  }
+}
