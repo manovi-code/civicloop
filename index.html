@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>CivicLoop — Open-Spec AI Cooling & Town Water Impact Tracker</title>
+<meta name="description" content="Pass the bill to shareholders and pass the savings onto the town. Open-spec closed-loop AI cooling parts, a draft reference skid, and public-record data center water tracking.">
+<style>
+:root{
+  --ink:#0b132b;--muted:#475569;--line:#cbd5e1;--bg:#f8fafc;--card:#ffffff;
+  --teal:#0d9488;--teal-dark:#0f766e;--amber:#d97706;--red:#be123c;--green:#15803d;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:1160px;margin:auto;padding:16px}
+.banner{background:linear-gradient(135deg,#0b132b 0%,#134e4a 100%);color:#fff;border-radius:14px;padding:24px;margin-bottom:16px}
+.banner .eyebrow{display:inline-block;background:rgba(255,255,255,.14);padding:4px 10px;border-radius:999px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.banner h1{margin:10px 0 6px;font-size:clamp(24px,4vw,36px);line-height:1.15}
+.banner .tagline{font-size:clamp(16px,2.3vw,20px);color:#5eead4;font-weight:700;margin:0 0 10px}
+.banner p{margin:0;color:#e2e8f0;max-width:850px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,.12);padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600}
+nav a:hover{background:rgba(255,255,255,.24)}
+section{margin:24px 0}
+h2{font-size:21px;margin:0 0 6px;color:var(--ink)}
+.sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.stat{background:#f0fdfa;border:1px solid #99f6e4;border-radius:10px;padding:12px}
+.stat b{display:block;font-size:22px;color:var(--teal-dark)}
+.stat span{font-size:12px;color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:12px}
+.controls label{display:flex;flex-direction:column;font-size:12px;font-weight:600;color:var(--muted);gap:4px}
+input,select,button{font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;max-width:100%}
+.controls label{max-width:100%}
+button{background:var(--teal);color:#fff;border:0;font-weight:600;cursor:pointer}
+button:hover{background:var(--teal-dark)}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f1f5f9;cursor:pointer;user-select:none;white-space:nowrap}
+th.sort::after{content:" ↕";color:var(--muted);font-weight:400}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11.5px;font-weight:600}
+.b-foia{background:#ffe4e6;color:var(--red)}
+.b-ok{background:#dcfce7;color:var(--green)}
+.b-part{background:#fef3c7;color:var(--amber)}
+.skid-box{border-left:4px solid var(--teal);background:#f0fdfa}
+.todo{border:2px dashed var(--amber);background:#fffbeb}
+.muted{color:var(--muted);font-size:12.5px}
+a{color:var(--teal-dark)}
+</style>
+</head>
+<body>
+<header>
+  <div class="banner">
+    <span class="eyebrow">CivicLoop · Open-Spec Cooling &amp; Town Water Tracker</span>
+    <h1>Keep Town Water in Town While AI Racks Stay Cool.</h1>
+    <p class="tagline">“Pass the bill to shareholders and pass the savings onto the town.”</p>
+    <p>Some data center campuses consume hundreds of millions of gallons of local water a year, mostly through evaporative cooling. Closed-loop liquid cooling can use far less. CivicLoop lists the off-the-shelf parts inside closed-loop systems with distributor prices, tracks public-record water use town by town, and publishes a draft open reference design for engineers to review.</p>
+    <nav>
+      <a href="#calc">1. Water Savings Calculator</a>
+      <a href="#teardown">2. Open-Spec Parts vs. Turnkey</a>
+      <a href="#skid">3. Draft Reference Skid</a>
+      <a href="#towns">4. Town Water Tracker</a>
+      <a href="#pledge">5. Revenue Plan &amp; Newsletter</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="calc">
+    <h2>1. Closed-Loop Retrofit &amp; Water Savings Calculator</h2>
+    <p class="sub">Estimate local water saved per year by moving from evaporative or hybrid cooling to closed-loop dry-cooled direct-to-chip (D2C), using published WUE benchmarks.</p>
+    <div class="card">
+      <div class="controls">
+        <label>Sizing input mode
+          <select id="mode">
+            <option value="mw">Facility IT Load (MW)</option>
+            <option value="racks">AI Racks (assumed 40 kW/rack)</option>
+          </select>
+        </label>
+        <label id="lbl-size">IT Load (MW)
+          <input id="size" type="number" min="0.5" max="500" step="0.5" value="10">
+        </label>
+        <label>Current cooling type
+          <select id="arch">
+            <option value="evap">Evaporative cooling towers (1.80 L/kWh)</option>
+            <option value="hybrid">Hybrid / conventional D2C with tower assist (0.40 L/kWh)</option>
+            <option value="closed">Already closed-loop dry D2C (0.03 L/kWh)</option>
+          </select>
+        </label>
+      </div>
+      <h3 style="margin:8px 0">Water (based on sourced benchmarks)</h3>
+      <div class="grid2" id="calc-water"></div>
+      <p class="muted" id="calc-water-note"></p>
+      <p class="muted" id="calc-sources"></p>
+      <h3 style="margin:16px 0 8px">Hardware cost — <span style="color:var(--amber)">rough illustrative estimate, not a quote</span></h3>
+      <div class="grid2" id="calc-cost"></div>
+      <div class="wrap"><table id="calc-assume" style="margin-top:10px"><thead><tr><th>Assumption (per ~40 kW loop)</th><th>Price used</th></tr></thead><tbody></tbody></table></div>
+      <p class="muted" id="calc-cost-note"></p>
+    </div>
+  </section>
+
+  <section id="teardown">
+    <h2>2. Open-Spec Wholesale Parts vs. Turnkey Packages</h2>
+    <p class="sub">Closed-loop cooling uses standard industrial components (pumps, membranes, inhibited glycol, water-chemistry sensors). Prices below are from distributor pages, checked <span class="chk">Oct 2026</span>. Turnkey packages that do not publish prices are shown as quote only.</p>
+    <div class="controls">
+      <label>Filter component or vendor
+        <input id="pq" placeholder="Search CDU, Grundfos, FilmTec, glycol, ChemTreat…">
+      </label>
+    </div>
+    <div class="card wrap">
+      <table id="pt">
+        <thead>
+          <tr>
+            <th>Subsystem</th>
+            <th>Open-Spec Component</th>
+            <th>Distributor Price</th>
+            <th>Turnkey / Managed Package</th>
+            <th>Turnkey Price</th>
+            <th>Sources</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="skid">
+    <h2>3. Reference Skid v1.0 (draft, seeking independent P.E. review)</h2>
+    <p class="sub">An open, unreviewed draft. Do not build from it.</p>
+    <div class="card skid-box">
+      <h3 id="skid-title" style="margin-top:0"></h3>
+      <p id="skid-sum"></p>
+      <div class="grid2" id="skid-layers"></div>
+      <p style="margin-bottom:0"><b>Water and mechanical engineers:</b> we're looking for independent reviewers to critique this draft. If you'd review it, please get in touch (contact address coming soon). Reviewer feedback will be published here.</p>
+    </div>
+  </section>
+
+  <section id="towns">
+    <h2>4. Town-by-Town US Data Center Water Tracker</h2>
+    <p class="sub">Figures from company reports, utility records, court-ordered releases, and news reporting (checked <span class="chk">Oct 2026</span>). Each row links its sources. Some rows are planned or maximum daily figures × 365, labeled as such. Click headers to sort.</p>
+    <div class="controls">
+      <label>Search
+        <input id="tq" placeholder="The Dalles, Botetourt, FOIA…">
+      </label>
+      <label>State
+        <select id="ts"><option value="all">All states</option></select>
+      </label>
+      <label>Operator
+        <select id="to"><option value="all">All operators</option></select>
+      </label>
+      <label>Disclosure status
+        <select id="td">
+          <option value="all">All statuses</option>
+          <option value="foia">FOIA contested</option>
+          <option value="disclosed">Disclosed</option>
+        </select>
+      </label>
+    </div>
+    <div class="card wrap">
+      <table id="tt">
+        <thead>
+          <tr>
+            <th class="sort" data-k="town">Town / Hub</th>
+            <th class="sort" data-k="state">State</th>
+            <th class="sort" data-k="operator">Operator</th>
+            <th class="sort" data-k="annualMGal">Annual (M gal)</th>
+            <th>Reported Figure &amp; Context</th>
+            <th class="sort" data-k="status">Disclosure Status</th>
+            <th>Sources</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pledge">
+    <h2>5. How CivicLoop Plans to Earn &amp; Share Revenue</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin-top:0">Revenue plan</h3>
+        <ul>
+          <li><b>Sponsored listings &amp; affiliate links:</b> component distributors and closed-loop integrators may sponsor clearly labeled listings or RFQ links. None exist yet.</li>
+          <li><b>Revenue sharing:</b> We plan to share revenue with local water-relief efforts in data center towns; details will be published here once there is revenue.</li>
+          <li><b>Independence:</b> sponsors will never change the water data, benchmarks, or price comparisons.</li>
+        </ul>
+      </div>
+
+      <div class="card todo">
+        <h3 style="margin-top:0">Subscribe: “The Water Bill”</h3>
+        <!-- TODO: connect to a newsletter provider (e.g. Buttondown/Beehiiv free tier). Form currently submits nowhere. -->
+        <p>Weekly tracker of data center water grabs &amp; open-spec cooling savings.</p>
+        <form onsubmit="event.preventDefault();this.querySelector('.msg').textContent='Signup not live yet — no email stored.'">
+          <div class="controls">
+            <label>Email
+              <input type="email" required placeholder="you@example.com">
+            </label>
+            <button type="submit">Join The Water Bill</button>
+          </div>
+          <p class="muted msg">TODO: not connected yet. Submits nowhere.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="card todo">
+      <h3 style="margin-top:0">Wholesale OEM / Ethical Integrator Sponsor (TODO)</h3>
+      <p>Distributors of pumps, heat exchangers, membranes, and water-chemistry sensors, and closed-loop integrators: sponsored listings will be clearly marked “Sponsored.” Terms not yet set.</p>
+      <p class="muted">TODO: add sponsor contact address before launch.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="muted">
+  <p><b>Methodology &amp; engineering disclaimer:</b> CivicLoop is independent and not affiliated with any company listed. Water figures come from the linked public sources; where a row multiplies a daily figure by 365 it says so. Calculator water estimates apply published WUE benchmarks (L per IT kWh) to a constant IT load and are order-of-magnitude only; real WUE depends on climate, set points, and design. Calculator dollar figures are rough illustrative estimates built from a few distributor list prices, are not quotes, and exclude major cost items listed with them. The reference skid is an unreviewed draft. Any real design should be reviewed by a qualified, licensed engineer in your jurisdiction. Prices and figures checked Oct 2026 and may change; corrections welcome.</p>
+</footer>
+
+<script>
+let D, sortK = 'annualMGal', asc = false;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = n => '$' + Math.round(n).toLocaleString();
+const linkList = ls => (ls||[]).map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('<br>');
+
+function runCalc() {
+  if (!D) return;
+  const mode = $('#mode').value;
+  const raw = Math.max(0.1, parseFloat($('#size').value) || 0);
+  $('#lbl-size').firstChild.textContent = mode === 'mw' ? 'IT Load (MW) ' : 'Rack count (40 kW/rack) ';
+  const mw = mode === 'mw' ? raw : raw * 0.04;
+  const racks = Math.round(mw * 25);
+  const B = D.benchmarks, arch = $('#arch').value;
+  const baseWue = arch === 'evap' ? B.evap_wue_l_kwh : (arch === 'hybrid' ? B.hybrid_wue_l_kwh : B.closed_wue_l_kwh);
+  const targetWue = B.closed_wue_l_kwh;
+  const kwh = mw * 1000 * 8760;
+  const savedGal = Math.max(0, kwh * (baseWue - targetWue) / 3.78541);
+  const homes = Math.round(savedGal / B.household_gal_per_year);
+  $('#calc-water').innerHTML = `
+    <div class="stat"><b>${Math.round(savedGal).toLocaleString()} gal/yr</b><span>Estimated local water not consumed (${mw.toFixed(1)} MW ≈ ${racks} racks)</span></div>
+    <div class="stat"><b>~${homes.toLocaleString()} households</b><span>Equivalent annual at-home use (EPA: 300+ gal/day per family)</span></div>`;
+  $('#calc-water-note').textContent = `Assumes ${mw.toFixed(2)} MW constant IT load (${(kwh/1e6).toFixed(1)}M kWh/yr), baseline WUE ${baseWue} L/kWh vs. closed-loop dry D2C ${targetWue} L/kWh. Water saved stays in the local supply (river, aquifer, or utility) the facility draws from.`;
+  $('#calc-sources').innerHTML = 'Benchmark sources: ' + B.sources.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join(' · ');
+
+  const I = D.illustrative;
+  const loops = Math.ceil(mw * 1000 / I.loopKw);
+  const openPerLoop = I.openItems.reduce((a, b) => a + b.cost, 0);
+  $('#calc-cost').innerHTML = `
+    <div class="stat" style="background:#fffbeb;border-color:#fcd34d"><b>${money(openPerLoop * loops)}</b><span>Illustrative: listed open-spec parts only × ${loops} loops (partial parts list — see exclusions)</span></div>
+    <div class="stat" style="background:#fffbeb;border-color:#fcd34d"><b>${money(I.turnkeyPerLoop * loops)}</b><span>Illustrative: ${esc(I.turnkeyLabel)} × ${loops} units</span></div>`;
+  $('#calc-assume tbody').innerHTML =
+    I.openItems.map(i => `<tr><td>Open-spec: ${esc(i.item)}</td><td>${money(i.cost)}</td></tr>`).join('') +
+    `<tr><td><b>Open-spec listed parts subtotal</b></td><td><b>${money(openPerLoop)}</b></td></tr>` +
+    `<tr><td>Turnkey reference: ${esc(I.turnkeyLabel)}</td><td>${money(I.turnkeyPerLoop)}</td></tr>` +
+    `<tr><td>Loops needed</td><td>${mw.toFixed(2)} MW ÷ ${I.loopKw} kW = ${loops}</td></tr>`;
+  $('#calc-cost-note').textContent = `Rough illustrative estimate, not a quote. Prices are single distributor list/sale prices from section 2, scaled linearly (real projects get volume pricing and use larger CDUs). The open-spec subtotal EXCLUDES ${I.excluded}, so the two figures are not like-for-like and the gap overstates any real saving.`;
+}
+
+function renderParts() {
+  const q = $('#pq').value.toLowerCase();
+  $('#pt tbody').innerHTML = D.parts.filter(p => JSON.stringify(p).toLowerCase().includes(q)).map(p => `
+    <tr>
+      <td><b>${esc(p.category)}</b></td>
+      <td>${esc(p.openSpec)}</td>
+      <td>${esc(p.openPrice)}</td>
+      <td>${esc(p.turnkeyVendor)}</td>
+      <td>${esc(p.turnkeyPrice)}</td>
+      <td class="muted">${linkList(p.links)}<br>checked ${esc(D.checked)}</td>
+    </tr>`).join('');
+}
+
+function renderTowns() {
+  const q = $('#tq').value.toLowerCase(), st = $('#ts').value, op = $('#to').value, ds = $('#td').value;
+  let rows = D.towns.filter(t => {
+    const foia = t.status.toLowerCase().includes('foia');
+    if (st !== 'all' && t.state !== st) return false;
+    if (op !== 'all' && !t.operator.includes(op)) return false;
+    if (ds === 'foia' && !foia) return false;
+    if (ds === 'disclosed' && foia) return false;
+    return JSON.stringify(t).toLowerCase().includes(q);
+  });
+  rows.sort((a, b) => {
+    const va = a[sortK], vb = b[sortK];
+    const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+    return asc ? cmp : -cmp;
+  });
+  $('#tt tbody').innerHTML = rows.map(t => {
+    const s = t.status.toLowerCase();
+    const cls = s.includes('foia') ? 'b-foia' : (s.includes('partial') ? 'b-part' : 'b-ok');
+    return `<tr>
+      <td><b>${esc(t.town)}</b></td><td>${esc(t.state)}</td><td>${esc(t.operator)}</td>
+      <td><b>${t.annualMGal.toLocaleString()}</b></td>
+      <td>${esc(t.reportedDraw)}${t.notes ? `<br><span class="muted">${esc(t.notes)}</span>` : ''}</td>
+      <td><span class="badge ${cls}">${esc(t.status)}</span></td>
+      <td class="muted">${linkList(t.links)}<br>checked ${esc(D.checked)}</td>
+    </tr>`;
+  }).join('');
+}
+
+fetch('data/cooling_data.json').then(r => r.json()).then(d => {
+  D = d;
+  document.querySelectorAll('.chk').forEach(el => el.textContent = d.checked);
+  $('#skid-title').textContent = d.skidSpec.title;
+  $('#skid-sum').textContent = d.skidSpec.summary;
+  $('#skid-layers').innerHTML = d.skidSpec.layers.map(l => `<div class="card" style="margin:0"><b>${esc(l.layer)}</b><p class="muted" style="margin:6px 0 0">${esc(l.spec)}</p></div>`).join('');
+  [...new Set(d.towns.map(t => t.state))].sort().forEach(s => $('#ts').insertAdjacentHTML('beforeend', `<option value="${esc(s)}">${esc(s)}</option>`));
+  ['Google','Meta','Microsoft','NSA','Multiple'].forEach(o => $('#to').insertAdjacentHTML('beforeend', `<option value="${esc(o)}">${esc(o)}</option>`));
+  runCalc(); renderParts(); renderTowns();
+}).catch(() => {
+  document.body.insertAdjacentHTML('afterbegin', '<p style="color:red;padding:16px">Could not load data/cooling_data.json — open via a web server, not file://.</p>');
+});
+
+['#mode','#size','#arch'].forEach(s => $(s).addEventListener('input', runCalc));
+$('#pq').addEventListener('input', renderParts);
+['#tq','#ts','#to','#td'].forEach(s => $(s).addEventListener('input', renderTowns));
+document.querySelectorAll('#tt th.sort').forEach(th => th.addEventListener('click', () => {
+  const k = th.dataset.k; asc = sortK === k ? !asc : (k !== 'annualMGal'); sortK = k; renderTowns();
+}));
+</script>
+</body>
+</html>
